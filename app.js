@@ -216,14 +216,14 @@ app.post("/user/create", bodyParser.json(), async (req, res) => {
    app.delete("/user/delete", bodyParser.json(), (req, res) =>{
 
       console.log("Delete called")
-      UserModel.find({"Password": req.body.Password},(err, Users)=>{
+      UserModel.find({"Email": req.body.Email},(err, Users)=>{
         if(err)
           res.send(err)
         if (Users.length ==0){
-          res.send("Password not found in the database. Enter a valid password")
+          res.send("Email not found in the database. Enter a valid email")
           return;
         }else{
-          UserModel.findOneAndDelete({"Password": req.body.Password}, function(err,Users){
+          UserModel.findOneAndDelete({"Email": req.body.Email}, function(err,Users){
 
             if(err){
               res.status(400)
